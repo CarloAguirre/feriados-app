@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <div className="principal">
-      <img src='title.png' className='title'></img>
+      <img src='title.png' className='title' alt={"titulo"}></img>
       <MyApi/>
     </div>
 
