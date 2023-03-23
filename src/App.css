@@ -40,3 +40,7 @@
   background-color: aliceblue;
   opacity: .3;
 }
+.carousel-control-prev-icon, .carousel-control-next-icon{
+  scale: 1.5;
+  
+}

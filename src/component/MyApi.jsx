@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Carousel from 'react-bootstrap/Carousel';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 import { InfoTable } from './InfoTable';
 import {feriadosFetch} from '../helpers/feriadosFetch';
@@ -36,24 +35,27 @@ export const MyApi = ()=> {
     useEffect(() => {
         getData()
     }, [today])
-
+    
     // Segundo Slide: filtro por mes
     const [busqueda, setBusqueda] = useState("")
     const [feriadoArray, setFeriadoArray] = useState([])
-
+    
     const onChangeHandler = ({target})=>{
         const {value} = target
         setBusqueda(value)
     }
 
-    const onSubmitHandler = (event)=>{
-        event.preventDefault()    
+    useEffect(() => {
+        const feriados = []
         for(let feriado of data){
             if(Number(feriado.date.split('-')[1]) === Number(busqueda)){
-                setFeriadoArray([...feriadoArray, feriado])
+                feriados.push(feriado)
             }
-        }    
-    }
+        }
+        setFeriadoArray(feriados)
+    }, [busqueda])
+    
+
     return (
         <>
 
@@ -62,7 +64,7 @@ export const MyApi = ()=> {
       <div className='calculadora' >
             <h1>Faltan</h1>
             {
-                (time == 0)
+                (time === 0)
                     ? <h2>Es Hoy!</h2>
                     : <h2>{time / aDayMilliseconds} días!</h2>
                 
@@ -71,7 +73,7 @@ export const MyApi = ()=> {
             <InfoTable title={title} fecha={fecha} tipo={tipo} />
       </Carousel.Item>
       <Carousel.Item>
-      <form className='month-form' onSubmit={onSubmitHandler}>
+      <form className='month-form' >
       <h1 className='mb-5'>Buscar Feriados</h1>
       <Form.Select size="lg" onChange={onChangeHandler}>
         <option value={"01"} >Enero</option>
@@ -87,12 +89,9 @@ export const MyApi = ()=> {
         <option value={"11"}>Noviembre</option>
         <option value={"12"}>Diciembre</option>
       </Form.Select>
-      <Button type="submit" className='mt-4' variant="light">Buscar</Button>
       </form>
-      </Carousel.Item>
-    </Carousel>
-    {
-        (feriadoArray.length != 0)? 
+      {
+        (feriadoArray.length !== 0)? 
             <table className="table container feriados-table mt-4">
             <thead>
                 <tr>
@@ -104,12 +103,13 @@ export const MyApi = ()=> {
             <tbody>
     
                 {
-                    feriadoArray.map(feriado=>{  
-                    return <tr key={feriado.date}>
-                            <th scope="row">{feriado.date}</th>
-                            <td>{feriado.title}</td>
-                            <td>{feriado.type}</td>
-                        </tr>    
+                    feriadoArray.map((feriado, index)=>{  
+                        return <tr key={index}>
+                        <th scope="row">{feriado.date}</th>
+                        <td>{feriado.title}</td>
+                        <td>{feriado.type}</td>
+                    </tr>
+                        //    console.log(feriado)                          
                     })
                 }
                 
@@ -119,6 +119,9 @@ export const MyApi = ()=> {
         :null
 
     }
+      </Carousel.Item>
+    </Carousel>
+   
         </>
         
     );
