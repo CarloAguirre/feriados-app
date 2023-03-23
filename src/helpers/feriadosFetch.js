@@ -14,7 +14,7 @@ export const feriadosFetch = async(url, setTime, setTitle, setFecha, setTipo, to
         }
         
 
-        for (let feriado of data){
+        for (let feriado of data){ // 2023-04-07
             if(Number(feriado.date.split('-')[1]) > Number(today.split('-')[1])){
                 setter(feriado)
                 return;

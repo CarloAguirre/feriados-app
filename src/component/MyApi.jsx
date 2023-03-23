@@ -14,8 +14,8 @@ export const MyApi = ()=> {
 
     // Primer Slide: Proximo Feriado
     const aDayMilliseconds = 86400000
-    const [today, setToday] = useState(new Date().toISOString().split('T')[0])
-    setInterval(()=>{
+    const [today, setToday] = useState(new Date().toISOString().split('T')[0]) 
+    setInterval(()=>{ 
         setToday(new Date().toISOString().split('T')[0])
     }, 3600000)
 
@@ -37,7 +37,7 @@ export const MyApi = ()=> {
     }, [today])
     
     // Segundo Slide: filtro por mes
-    const [busqueda, setBusqueda] = useState("")
+    const [busqueda, setBusqueda] = useState()
     const [feriadoArray, setFeriadoArray] = useState([])
     
     const onChangeHandler = ({target})=>{
@@ -46,7 +46,7 @@ export const MyApi = ()=> {
     }
 
     useEffect(() => {
-        const feriados = []
+        const feriados = [];
         for(let feriado of data){
             if(Number(feriado.date.split('-')[1]) === Number(busqueda)){
                 feriados.push(feriado)
@@ -75,7 +75,7 @@ export const MyApi = ()=> {
       <Carousel.Item>
       <form className='month-form' >
       <h1 className='mb-5'>Buscar Feriados</h1>
-      <Form.Select size="lg" onChange={onChangeHandler}>
+      <Form.Select size="lg" onChange={onChangeHandler} defaultValue={"03"}>
         <option value={"01"} >Enero</option>
         <option value={"02"}>Febrero</option>
         <option value={"03"}>Marzo</option>
@@ -108,16 +108,17 @@ export const MyApi = ()=> {
                         <th scope="row">{feriado.date}</th>
                         <td>{feriado.title}</td>
                         <td>{feriado.type}</td>
-                    </tr>
-                        //    console.log(feriado)                          
+                    </tr>                      
                     })
                 }
                 
             </tbody>
             </table>
     
-        :null
-
+        : <div className="fail-img">
+            <img src={'fail.png'}></img>
+            <h3 className='mt-4'>No hay feriados este mes!</h3>
+        </div> 
     }
       </Carousel.Item>
     </Carousel>

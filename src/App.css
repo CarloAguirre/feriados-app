@@ -9,38 +9,37 @@
   
 }
 .calculadora{
-  display: flex;
   flex-direction: column;
+  margin-top: 20vh;
+}
+.month-form, .calculadora, .fail-img{
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20vh;
 }
 .list{
   display: flex;
   justify-content: center;
   padding-top: 3.5vh;
 }
-.list-item{
-  background-color: transparent;
-
-}
 .title{
   margin-left: 10vw;
 }
 .month-form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   margin-top: 20vh;
   margin-left: 25vw;
   margin-right: 25vw;
 }
 .feriados-table{
-  background-color: aliceblue;
-  opacity: .3;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .carousel-control-prev-icon, .carousel-control-next-icon{
   scale: 1.5;
-  
+}
+.fail-img{
+  flex-direction: column;
+  margin-top: 2vh;
+  margin-left: 25vw;
+  margin-right: 25vw;
 }

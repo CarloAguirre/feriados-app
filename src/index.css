@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Righteous', cursive;
   color: white;
   scale: 1.5;
