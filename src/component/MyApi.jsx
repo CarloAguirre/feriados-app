@@ -12,6 +12,14 @@ import {feriadosFetch} from '../helpers/feriadosFetch';
 
 export const MyApi = ()=> {
 
+    const getCryptos = async()=>{
+        const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+        const data = await res.json()
+
+        console.log(data)
+    }
+    getCryptos()
+
     const url = "https://api.victorsanmartin.com/holidays.json"
     
     // Primer Slide: Proximo Feriado
@@ -44,13 +52,9 @@ export const MyApi = ()=> {
     }
 
     useEffect(() => {
-        const feriados = [];
-        for(let feriado of data){
-            if(Number(feriado.date.split('-')[1]) === Number(busqueda)){
-                feriados.push(feriado)
-            }
-        }
-        setFeriadoArray(feriados)
+        //En este punto optimizé el codigo que figura en el video.
+        const filter = data.filter(feriado => feriado.date.split("-")[1] === busqueda)
+        setFeriadoArray(filter)
     }, [busqueda])
     
 
