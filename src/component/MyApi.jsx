@@ -12,14 +12,6 @@ import {feriadosFetch} from '../helpers/feriadosFetch';
 
 export const MyApi = ()=> {
 
-    const getCryptos = async()=>{
-        const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
-        const data = await res.json()
-
-        console.log(data)
-    }
-    getCryptos()
-
     const url = "https://api.victorsanmartin.com/holidays.json"
     
     // Primer Slide: Proximo Feriado
@@ -65,12 +57,11 @@ export const MyApi = ()=> {
       <Carousel.Item>
         {
             (data !== [])
-                ?       <div className='calculadora' >
-                            <h1>Faltan</h1>
+                ?       <div className='calculadora' >               
                             {
                                 (time === 0)
                                     ? <h2>Es Hoy!</h2>
-                                    : <><h2>{time / aDayMilliseconds} días!</h2>
+                                    : <><h1>Faltan</h1> <h2>{time / aDayMilliseconds} días!</h2>
                                     <InfoTable title={title} fecha={fecha} tipo={tipo} /></>
                                 
                             }
