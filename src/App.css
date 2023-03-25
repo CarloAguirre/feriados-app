@@ -23,11 +23,13 @@
   padding-top: 3.5vh;
 }
 .title{
-  margin-left: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .month-form{
   flex-direction: column;
-  margin-top: 20vh;
+  margin-top: 5.9vh;
   margin-left: 25vw;
   margin-right: 25vw;
 }
@@ -42,4 +44,14 @@
   margin-top: 2vh;
   margin-left: 25vw;
   margin-right: 25vw;
+}
+@media (max-width: 1000px ){
+   .title{
+    scale: 70%;
+   }
+}
+@media (max-width: 700px ){
+  .title{
+   scale: 40%;
+  }
 }
