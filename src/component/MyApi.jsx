@@ -1,3 +1,5 @@
+//Profesor, hice algunas optimizaciones en el codigo que figura en el video.
+
 import React, { useState, useEffect } from 'react';
 
 import "../index.css"
@@ -18,18 +20,15 @@ export const MyApi = ()=> {
     const aDayMilliseconds = 86400000
     const [today, setToday] = useState(new Date().toISOString().split('T')[0]) 
     const [time, setTime] = useState();
-    const [title, setTitle] = useState("")
-    const [fecha, setFecha] = useState("")
-    const [tipo, setTipo] = useState("")
+    const [nextFeriado, setNextFeriado] = useState("")
     const [data, setData] = useState([])
-    
     setInterval(()=>{ 
         setToday(new Date().toISOString().split('T')[0])
     }, 3600000)
     
     useEffect(() => {
         const getData = async()=>{
-            await feriadosFetch(url, setTime, setTitle, setFecha, setTipo, today, setData)
+            await feriadosFetch(url, setTime, today, setData, setNextFeriado)
         }
         getData()
     }, [today])
@@ -44,7 +43,6 @@ export const MyApi = ()=> {
     }
 
     useEffect(() => {
-        //En este punto optimizé el codigo que figura en el video.
         const filter = data.filter(feriado => feriado.date.split("-")[1] === busqueda)
         setFeriadoArray(filter)
     }, [busqueda])
@@ -62,7 +60,7 @@ export const MyApi = ()=> {
                                 (time === 0)
                                     ? <h2>Es Hoy!</h2>
                                     : <><h1>Faltan</h1> <h2>{time / aDayMilliseconds} días!</h2>
-                                    <InfoTable title={title} fecha={fecha} tipo={tipo} /></>
+                                    <InfoTable title={nextFeriado.title} fecha={nextFeriado.date} tipo={nextFeriado.type} /></>
                                 
                             }
                         </div>

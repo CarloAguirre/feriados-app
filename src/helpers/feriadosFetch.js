@@ -1,4 +1,4 @@
-export const feriadosFetch = async(url, setTime, setTitle, setFecha, setTipo, today, setData)=>{
+export const feriadosFetch = async(url, setTime, today, setData, setNextFeriado)=>{
     try {
         const res = await fetch(url);
         const {data} = await res.json()
@@ -6,9 +6,10 @@ export const feriadosFetch = async(url, setTime, setTitle, setFecha, setTipo, to
         let nextFeriado = "";
         const setter = (feriado)=>{
             nextFeriado = feriado.date;
-            setTitle(feriado.title)
-            setFecha(feriado.date)
-            setTipo(feriado.type)
+            // setTitle(feriado.title)
+            // setFecha(feriado.date)
+            // setTipo(feriado.type)
+            setNextFeriado(feriado)
             setTime(new Date(nextFeriado).getTime() - new Date(today).getTime())
             setData(data)
         }
