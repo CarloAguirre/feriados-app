@@ -1,9 +1,7 @@
-//Profesor, hice algunas optimizaciones en el codigo que figura en el video.
-
 import React, { useState, useEffect } from 'react';
 
-import "../index.css"
-import "../App.css"
+// import "../index.css"
+// import "../App.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Carousel from 'react-bootstrap/Carousel';

@@ -6,9 +6,6 @@ export const feriadosFetch = async(url, setTime, today, setData, setNextFeriado)
         let nextFeriado = "";
         const setter = (feriado)=>{
             nextFeriado = feriado.date;
-            // setTitle(feriado.title)
-            // setFecha(feriado.date)
-            // setTipo(feriado.type)
             setNextFeriado(feriado)
             setTime(new Date(nextFeriado).getTime() - new Date(today).getTime())
             setData(data)
