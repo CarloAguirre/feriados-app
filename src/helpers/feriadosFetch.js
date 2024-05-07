@@ -2,7 +2,7 @@ export const feriadosFetch = async(url, setTime, today, setData, setNextFeriado)
     try {
         const res = await fetch(url);
         const {data} = await res.json()
-
+        console.log(data)
         let nextFeriado = "";
         const setter = (feriado)=>{
             nextFeriado = feriado.date;

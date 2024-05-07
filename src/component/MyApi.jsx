@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-// import "../index.css"
-// import "../App.css"
+import "../index.css"
+import "../App.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Carousel from 'react-bootstrap/Carousel';
@@ -12,7 +12,7 @@ import {feriadosFetch} from '../helpers/feriadosFetch';
 
 export const MyApi = ()=> {
 
-    const url = "https://api.victorsanmartin.com/holidays.json"
+    const url = "https://api.boostr.cl/holidays.json"
     
     // Primer Slide: Proximo Feriado
     const aDayMilliseconds = 86400000
